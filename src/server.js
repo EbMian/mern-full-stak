@@ -1,6 +1,5 @@
-// Import d'express
-
-const express = require('express');
+import express from 'express';
+import {connectDB, closeDB} from './config/database.js';
 
 // Création de l'application
 
@@ -20,10 +19,25 @@ app.get('/', (req, res) => {
     })
 });
 
-// Démarrage du serveur
-app.listen(PORT, () => {
-    console.log(`Youpi ! Le serveur est démaré sur le port ${PORT}`);
-    console.log(`URL : http://localhost:${PORT}`);
 
-});
+// Fonction assychrone qui démarre le serveur
+const startServer = async () => {
+    try {
+        // 1 - Connexion à MongoDb
+        await connectDB();
+        // 2 - Démarre le serveur Express
+        app.listen(PORT, () => {
+            console.log(`Youpi ! Le serveur est démaré sur le port ${PORT}`);
+            console.log(`URL : http://localhost:${PORT}`);
+            console.log(`Environnement : ${process.env.NODE_ENV || 'development'}`);
+        });
+    }
+    catch(error) {
+        console.error(`❌ Erreur lors du démarage du serveur :`, error);
+        process.exit(1);
+    }
+    
 
+} 
+
+startServer();
