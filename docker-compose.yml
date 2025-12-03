@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     # Variable d'environnement
     environment:
-      MONGO_INITDB_DATABASE: blog-mern
+      MONGO_INITDB_DATABASE: blog_mern
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: adminpassword
     # Exposition du port
