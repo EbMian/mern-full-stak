@@ -1,9 +1,18 @@
 import express from 'express';
 import {connectDB, closeDB} from './config/database.js';
+// Import du middleware
+//import { errorHandler, notFound } from './middleware/errorHandler.js';
 
 // Création de l'application
 
 const app = express();
+
+
+// Parser JSON (OBLIGATOIRE pour POST/PUT)
+app.use(express.json());
+
+// Parser les données de formulaires
+app.use(express.urlencoded({ extended: true }));
 
 // Configuration du port
 
@@ -15,10 +24,18 @@ app.get('/', (req, res) => {
     res.json({
         message: 'Bienvenue cher voyageur !',
         version: '1.0.0',
-        status: 'Le serveur fonctionne à merveille'
+        endpoints: {
+            articles: '/api/articles'
+        }
     })
 });
 
+// Montage des routes articles
+import articleRoutes from './routes/articles.js';
+app.use('/api/articles', articleRoutes);
+
+// 404 - APRÈS toutes les routes
+//app.use(notFound);
 
 // Fonction assychrone qui démarre le serveur
 const startServer = async () => {
@@ -36,8 +53,10 @@ const startServer = async () => {
         console.error(`❌ Erreur lors du démarage du serveur :`, error);
         process.exit(1);
     }
-    
 
 } 
 
 startServer();
+
+// Error handler - EN DERNIER
+//app.use(errorHandler);
