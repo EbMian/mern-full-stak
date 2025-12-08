@@ -13,13 +13,3 @@ class AppError extends Error {
 }
 
 export default AppError;
-
-/*
-switch (statusCode) {
-    case "500":
-        this.status = 'fail';
-        break;
-    default:
-        this.status = 'error';
-}
-*/

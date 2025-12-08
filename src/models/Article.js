@@ -8,13 +8,15 @@ const articleSchema = new mongoose.Schema(
             type: String,
             required: [true, "Le titre est obligatoire"],
             trim: true,
-            maxlength: [200, "Le titre ne peut pas dépasser 200 caractères"]
+            minlength: [3, "Le titre doit contenir au moins 3 caractères"],
+            maxlength: [200, "Données invalides : Le titre ne peut pas dépasser 200 caractères"]
 
         },
         contenu: {
             type: String,
             required: [true, "Le contenu est obligatoire"],
             trim: true,
+            minlength: [10, "Données invalides : Le contenu doit contenir au moins 10 caractères."],
             maxlength: [200, "Le contenu ne peut pas dépasser 200 caractères"]
 
         },

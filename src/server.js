@@ -1,7 +1,5 @@
 import express from 'express';
 import {connectDB, closeDB} from './config/database.js';
-// Import du middleware
-//import { errorHandler, notFound } from './middleware/errorHandler.js';
 
 // Création de l'application
 
@@ -10,6 +8,9 @@ const app = express();
 
 // Parser JSON (OBLIGATOIRE pour POST/PUT)
 app.use(express.json());
+
+// Middleware pour parser les données URL-encodées (formulaires)
+app.use(express.urlencoded({ extended: true }));
 
 // Parser les données de formulaires
 app.use(express.urlencoded({ extended: true }));
@@ -31,11 +32,13 @@ app.get('/', (req, res) => {
 });
 
 // Montage des routes articles
-import articleRoutes from './routes/articles.js';
-app.use('/api/articles', articleRoutes);
+import router from './routes/articles.js';
+app.use('/api/articles', router);
+
+import { errorHandler, notFound } from './middleware/errorHandler.js';
 
 // 404 - APRÈS toutes les routes
-//app.use(notFound);
+app.use(notFound);
 
 // Fonction assychrone qui démarre le serveur
 const startServer = async () => {
@@ -59,4 +62,5 @@ const startServer = async () => {
 startServer();
 
 // Error handler - EN DERNIER
-//app.use(errorHandler);
+// Import du middleware
+app.use(errorHandler);
