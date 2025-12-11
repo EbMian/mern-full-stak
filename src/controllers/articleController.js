@@ -7,13 +7,13 @@ import AppError from '../utils/AppError.js';
  * CREATE - Créer un nouvel article
  */
 const createArticle = catchAsync (async (req, res, next) => {
-    const { titre, contenu, auteur, categorie } = req.body;
+    //const { titre, contenu, auteur, categorie } = req.body;
 
-    const article = new Article({
-        titre,
-        contenu,
-        auteur,
-        categorie
+    const article = await Article.create({
+        titre: req.body.titre,
+        contenu: req.body.contenu,
+        auteur: req.body.auteur,
+        categorie: req.body.categorie,
     });
 
     const articleSauvegarde = await article.save();

@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { type } from "os";
 
 const articleSchema = new mongoose.Schema(
     {
@@ -77,18 +76,21 @@ articleSchema.statics.findPublies = function() {
 
 
 articleSchema.virtual('resume').get(function() {
-    if (this.contenu.length <= 150) {
+    const content = this.contenu;
+    /*const contentLength = content.length;
+    if (contentLength <= 150) {
         return this.contenu;
     }
-    return this.contenu.substring(0,150) + '...' 
+    return this.contenu.substring(0,150) + '...';*/
+    return this.contenu;
 
 })
 
 articleSchema.pre('save', function(next) {
     console.log("Sauvegarde de l'article : " + this.titre)
-    next
+    //next();
 
-})
+});
 
 
 articleSchema.post('save', function(doc) {

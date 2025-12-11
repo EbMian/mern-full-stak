@@ -1,10 +1,9 @@
 import express from 'express';
 const router = express.Router();
-import {createArticle,
-    getAllArticles,
-    getArticleById,
-    updateArticle,
-    deleteArticle} from '../controllers/articleController.js'
+import {createArticle, getAllArticles, getArticleById, updateArticle, deleteArticle} from '../controllers/articleController.js'
+
+import commentRoutes from './comments.js';
+router.use('/:articleId/comments', commentRoutes);
 
 // Routes CRUD
 router.get('/', getAllArticles);// Liste

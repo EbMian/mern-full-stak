@@ -11,11 +11,11 @@ await mongoose.connect(process.env.MONGODB_URI);
 
 // Créer un nouvel article
 const article = new Article({
-            titre: 'Mon premier article',
-            contenu: 'Ceci est le contenu de mon premier article sur le blog MERN. Il contient du texte intéressant.',
-            auteur: 'John Doe',
-            categorie: 'Technologie'
-        });
+        titre: 'Mon premier article',
+        contenu: 'Ceci est le contenu de mon premier article sur le blog MERN. Il contient du texte intéressant.',
+        auteur: 'John Doe',
+        categorie: 'Technologie'
+});
 
 // Sauvegarder l'article
 await article.save();
