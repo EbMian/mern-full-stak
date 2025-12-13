@@ -35,6 +35,10 @@ app.get('/', (req, res) => {
 import router from './routes/articles.js';
 app.use('/api/articles', router);
 
+// Montage des routes protégées
+import authRoutes from './routes/auth.js';
+app.use('/api/auth', authRoutes);
+
 import { errorHandler, notFound } from './middleware/errorHandler.js';
 
 // 404 - APRÈS toutes les routes

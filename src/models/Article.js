@@ -53,6 +53,7 @@ const articleSchema = new mongoose.Schema(
     }
 )
 
+
 articleSchema.methods.publier = function() {
     this.publie = true;
     return this.save();
