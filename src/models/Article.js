@@ -1,56 +1,50 @@
 import mongoose from "mongoose";
-import { type } from "os";
 
-const articleSchema = new mongoose.Schema(
-    {
-        // ensemble des attributs de votre entité
-        titre: {
-            type: String,
-            required: [true, "Le titre est obligatoire"],
-            trim: true,
-            maxlength: [200, "Le titre ne peut pas dépasser 200 caractères"]
+const articleSchema = new mongoose.Schema({
+    // ensemble des attributs de votre entité
+    titre: {
+        type: String,
+        required: [true, "Le titre est obligatoire"],
+        trim: true,
+        maxlength: [200, "Le titre ne peut pas dépasser 200 caractères"]
 
-        },
-        contenu: {
-            type: String,
-            required: [true, "Le contenu est obligatoire"],
-            trim: true,
-            maxlength: [200, "Le contenu ne peut pas dépasser 200 caractères"]
-
-        },
-        auteur : {
-            type: String,
-            required: true
-
-        },
-        publie: {
-            type: Boolean,
-            default: false
-        },
-        categorie: {
-            type: String,
-
-            enum: {
-                values: ['Technologie', 'Lifestyle', 'Voyage', 'Cuisine', 'Autre'],
-
-            }
-        },
-        vues: {
-            type: Number,
-            default: 0,
-            min: 0
-        }
     },
-    {
+    contenu: {
+        type: String,
+        required: [true, "Le contenu est obligatoire"],
+        trim: true,
+        maxlength: [200, "Le contenu ne peut pas dépasser 200 caractères"]
+
+    },
+    auteur : {
+        type: String,
+        required: true
+
+    },
+    publie: {
+        type: Boolean,
+        default: false
+    },
+    categorie: {
+        type: String,
+        enum: {
+            values: ['Technologie', 'Lifestyle', 'Voyage', 'Cuisine', 'Autre'],
+        },
+        required: true,
+    },
+    vues: {
+        type: Number,
+        default: 0,
+        min: 0
+    }
+},  {
         // Options générales sur l'entité
-        // createdAt 
-        timestamps: true,
+        // createdAt
         toJSON: {
             virtuals: true
-
-        }
-    }
-)
+        },
+        timestamps: true,
+});
 
 articleSchema.methods.publier = function() {
     this.publie = true;
@@ -83,8 +77,8 @@ articleSchema.virtual('resume').get(function() {
 })
 
 articleSchema.pre('save', function(next) {
-    console.log("Sauvegarde de l'article : " + this.titre)
-    next
+    console.log("Sauvegarde de l'article : " + this.titre);
+    next();
 
 })
 

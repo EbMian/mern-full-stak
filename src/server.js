@@ -1,9 +1,18 @@
 import express from 'express';
 import {connectDB, closeDB} from './config/database.js';
+import articlesRouter from './routes/articles.js';
 
 // Création de l'application
 
 const app = express();
+
+// Parser JSON (obligatoire pour POST et PUT)
+
+app.use(express.json());
+
+// Parser les données de formulaires
+
+app.use(express.urlencoded({ extended: true }));
 
 // Configuration du port
 
@@ -19,6 +28,7 @@ app.get('/', (req, res) => {
     })
 });
 
+app.use('/api/articles', articlesRouter);
 
 // Fonction assychrone qui démarre le serveur
 const startServer = async () => {
