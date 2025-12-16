@@ -1,10 +1,19 @@
 import express from 'express';
 import {connectDB, closeDB} from './config/database.js';
+import cors from 'cors';
 
 // Création de l'application
 
 const app = express();
 
+// Configuration du port
+
+const PORT = process.env.PORT || 3000;
+
+// Applique le middleware cors
+app.use(cors({
+    origin: 'http://localhost:5173',
+}));
 
 // Parser JSON (OBLIGATOIRE pour POST/PUT)
 app.use(express.json());
@@ -15,10 +24,6 @@ app.use(express.urlencoded({ extended: true }));
 // Parser les données de formulaires
 app.use(express.urlencoded({ extended: true }));
 
-// Configuration du port
-
-const PORT = process.env.PORT || 3000;
-
 // Route pour tester le serveur
 
 app.get('/', (req, res) => {
@@ -26,7 +31,8 @@ app.get('/', (req, res) => {
         message: 'Bienvenue cher voyageur !',
         version: '1.0.0',
         endpoints: {
-            articles: '/api/articles'
+            articles: '/api/articles',
+            auth: '/api/auth',
         }
     })
 });

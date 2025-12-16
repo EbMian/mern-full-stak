@@ -52,23 +52,23 @@ const createArticle = catchAsync (async (req, res, next) => {
         
         // Construire la réponse
         const response = {
-                    success: true,
-                    count: articles.length,
-                    totalCount: totalCount,
-                    data: articles
-                };
-        
-                if (paginationInfo) {
-                    response.pagination = paginationInfo;
-                }
-        
-                res.status(200).json(response);
-        
-                res.status(500).json({
-                    success: false,
-                    message: 'Erreur lors de la récupération des articles',
-                    error: error.message
-                });
+            success: true,
+            count: articles.length,
+            totalCount: totalCount,
+            data: articles
+        };
+
+        if (paginationInfo) {
+            response.pagination = paginationInfo;
+        }
+
+        return res.status(200).json(response);
+
+        res.status(500).json({
+            success: false,
+            message: 'Erreur lors de la récupération des articles',
+            error: error.message
+        });
 });
     
 

@@ -30,10 +30,10 @@ const userSchema = new mongoose.Schema({
 
 // Middleware pre-save : hasher le mot de passe
 userSchema.pre('save', async function(next) {
-    if (!this.isModified('password')) return next();
+    if (!this.$isModified('password')) return;
 
     this.password = await bcrypt.hash(this.password, 12);
-    next();
+    //next();
 });
 
 // Méthode pour comparer les mots de passe
