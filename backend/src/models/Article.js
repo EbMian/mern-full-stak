@@ -78,12 +78,12 @@ articleSchema.statics.findPublies = function() {
 
 articleSchema.virtual('resume').get(function() {
     const content = this.contenu;
-    /*const contentLength = content.length;
+    const contentLength = content.length;
     if (contentLength <= 150) {
         return this.contenu;
     }
-    return this.contenu.substring(0,150) + '...';*/
-    return this.contenu;
+    return this.contenu.substring(0,150) + '...';
+    //return this.contenu;
 
 })
 
