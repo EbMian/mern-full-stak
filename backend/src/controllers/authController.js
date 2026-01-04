@@ -74,6 +74,17 @@ const updateMe = catchAsync(async(req, res, next) => {
     if (!user) {
         return next(new AppError('Connexion requise', 401));
     }
+
+    const updatedUser = await User.findOneAndUpdate(
+        id,
+        req.body,
+        {
+            new: true,
+            runValidators: true
+        }
+    );
+
+    /* Modifie seulement le nom
     const updatedUser = await User.findOneAndUpdate(
         id,
         {$set:{nom: updateName}},
@@ -81,7 +92,8 @@ const updateMe = catchAsync(async(req, res, next) => {
             new: true,
             runValidators: true
         }
-    );
+    );*/
+
     // Récupère le token pour l'afficher
     const token = signToken(user._id);
 
@@ -94,10 +106,10 @@ const updateMe = catchAsync(async(req, res, next) => {
 })
 
 const updatePassword = catchAsync(async(req, res, next) => {
-    // Vérifer que l'utilisateur est connecté
     const updatedPassword = req.body.password;
     const userToUpdate = req.user;
     const id = userToUpdate._id;
+    // Vérifer que l'utilisateur est connecté
     if (!userToUpdate) {
         return next(new AppError('Connexion requise', 401));
     }

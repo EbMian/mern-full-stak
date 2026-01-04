@@ -16,7 +16,7 @@ const articleSchema = new mongoose.Schema(
             required: [true, "Le contenu est obligatoire"],
             trim: true,
             minlength: [10, "Données invalides : Le contenu doit contenir au moins 10 caractères."],
-            maxlength: [200, "Le contenu ne peut pas dépasser 200 caractères"]
+            maxlength: [10000, "Le contenu ne peut pas dépasser 10 000 caractères"]
 
         },
         auteur : {
@@ -32,8 +32,7 @@ const articleSchema = new mongoose.Schema(
             type: String,
 
             enum: {
-                values: ['Technologie', 'Lifestyle', 'Voyage', 'Cuisine', 'Autre'],
-
+                values: ['Général', 'Génomique', 'Transcriptomique', 'Protéomique', 'Autre'],
             }
         },
         vues: {

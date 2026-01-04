@@ -88,8 +88,53 @@ const createArticle = catchAsync (async (req, res, next) => {
 });
 
 /**
+ * READ - Récupérer les articles d'un utilisateur
+ */const getArticleByUser = catchAsync(async (req, res, next) => {
+
+    const user = req.body.user;
+    const userName = user.nom;
+    const articles = await Article.find({autheur: userName});
+
+    if (!articles) {
+        return next(new AppError('Article non trouvé', 404));
+    }
+    
+    // Incrémenter le nombre de vues
+    await articles.incrementerVues();
+
+    res.status(200).json({ success: true, data: articles });
+});
+
+/**
  * UPDATE - Mettre à jour un article
  */const updateArticle = catchAsync (async (req, res) => {
+    const { id } = req.params;
+
+    const article = await Article.findByIdAndUpdate(
+        id,
+        req.body,
+        {
+            new: true,
+            runValidators: true
+        }
+    );
+
+    if (!article) {
+        return next(new AppError('Article non trouvé', 404));
+    }
+
+    res.status(200).json({
+        success: true,
+        message: 'Article mis à jour',
+        data: article
+    });
+
+    
+});
+
+/**
+ * UPDATE - Publier l'article (publie = true)
+ */const publishArticle = catchAsync (async (req, res) => {
     const { id } = req.params;
 
     const article = await Article.findByIdAndUpdate(
@@ -148,5 +193,6 @@ export  {
     getAllArticles,
     getArticleById,
     updateArticle,
-    deleteArticle
+    deleteArticle,
+    getArticleByUser,
 };

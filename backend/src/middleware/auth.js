@@ -24,7 +24,7 @@ const protect = catchAsync(async (req, res, next) => {
         return next(new AppError('Utilisateur introuvable', 401));
     }
 
-    // 4) Attacher l'utilisateur à la requête
+    // 4) Attacher l'utilisateur à la requête'
     req.user = currentUser;
     next();
 });
