@@ -34,26 +34,30 @@ export const Register = () => {
   return (
     <div>
       <form id="registerFrom" onSubmit={handleSubmit}>
-        <div>
+        <div className="my-5" style={{maxWidth: "50%", textAlign: "justify", marginLeft: "auto", marginRight: "auto"}}>
           <h2>Inscription</h2>
-          <hr />
+          <br />
 
           <label htmlFor="name"><b>Nom</b></label>
+          <br />
           <input type="text" name="name" id="name" value={values.nom} onChange={(e) => handleChange("nom", e.target.value)} required />
-
+          <br />
           <label htmlFor="email"><b>Adresse e-mail</b></label>
+          <br />
           <input type="text" name="email" id="email" value={values.email} onChange={(e) => handleChange("email", e.target.value)} required />
-
+          <br />
           <label htmlFor="password"><b>Mot de passe</b></label>
+          <br />
           <input type="password" name="password" id="password" value={values.password} onChange={(e) => handleChange("password", e.target.value)} required />
-          <hr />
-
+          <br />
           <button type="submit">S'inscrire</button>
+        
+          <div>
+            <p>Vous avez déjà un compte ? <a href="/login">Connexion</a>.</p>
+          </div>
         </div>
 
-        <div>
-          <p>Vous avez déjà un compte ? <a href="/login">Connexion</a>.</p>
-        </div>
+        
       </form>
     </div>
   )

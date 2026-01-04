@@ -40,10 +40,10 @@ export const Home = () => {
   
   return (
     <div style={{backgroundColor:"#DCD2D2"}}>
-      <div>
+      {/* <div>
         <label htmlFor="gsearch">Rechercher un article </label>
         <input type="search" id="gsearch" name="gsearch" />
-      </div>
+      </div> */}
       <h2>Accueil</h2>
       <p>La connexion est nécessaire pour commenter ou créer un article</p>
       <div className='container-fluid'>
@@ -54,9 +54,9 @@ export const Home = () => {
                 <div className='card w-100'>
                   <img src="/images/biologie.jpg" className="card-img-top" alt="Illustration"/>
                     <div className='card-body'>
-                    <p className="card-title mb-4">{article.titre}</p>
+                    <h3 className="card-title mb-4">{article.titre}</h3>
                       <p>{article.auteur}</p>
-                      <p>{article.createdAt}</p>
+                      <p>{article.createdAt.slice(0, 10)}</p>
                       <p>{article.resume}</p>
                       <a href={"/articles/"+article._id} className="btn" style={{backgroundColor: "#FFE100", borderRadius: "15px", color: "black", fontWeight: "bold", border: "none"}}>Voir plus</a>
                       {/* <p>{article.vues}</p> */}

@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
     res.json({
-        message: 'Bienvenue cher voyageur !',
+        message: "Bienvenue sur l'API du blog !",
         version: '1.0.0',
         endpoints: {
             articles: '/api/articles',

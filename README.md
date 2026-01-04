@@ -39,10 +39,10 @@ backend/
 │   │   ├── articles.js          # Routes articles
 │   │   └── comments.js          # Routes commentaires
 │   ├── middleware/
-│   │   ├── auth.js              # protect, restrictTo
-│   │   ├── errorHandler.js      # Gestion erreurs
-│   │   └── security.js          # Middlewares sécurité
+│   │   ├── auth.js              # protect
+│   │   └── errorHandler.js      # Gestion erreurs
 │   ├── utils/
+        ├── queryFeatures.js     # Fonctionalités utiles 
 │   │   └── AppError.js          # Classe erreur personnalisée
 │   └── server.js                # Point d'entrée
 ├── .env                         # Variables d'environnement

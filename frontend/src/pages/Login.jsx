@@ -27,12 +27,8 @@ export const Login = () => {
       localStorage.setItem('token', token);
       // Test de récupération du token
       const storedToken = localStorage.getItem('token');
-      console.log(storedToken); // Affiche la chaîne JSON
-
-      /******************************* A décommenter ************************************/
-
-      //window.location.href = '/';
-      
+      console.log(storedToken);
+      window.location.href = '/';
     } catch (error) {
       console.log(error);
     }
@@ -40,25 +36,29 @@ export const Login = () => {
   return (
     <div>
       <form id="loginFrom" onSubmit={handleSubmit}>
-        <div>
+        <div className="my-5" style={{maxWidth: "50%", textAlign: "justify", marginLeft: "auto", marginRight: "auto"}}>
           <h2>Connexion</h2>
-          <hr />
+          
 
           <label htmlFor="email"><b>Adresse e-mail</b></label>
+          <br/>
           <input type="text" name="email" id="email" value={values.email} onChange={(e) => handleChange("email", e.target.value)} required />
-
+          <br/>
           <label htmlFor="password"><b>Mot de passe</b></label>
+          <br/>
           <input type="password" name="password" id="password" value={values.password} onChange={(e) => handleChange("password", e.target.value)} required />
-          <hr />
+          <br/>
 
           <button type="submit">Se connecter</button>
-        </div>
-        <div>
+
+          {/* <div>
           <p>Mot de passe oublié ? <a href="/register">Modifier le mot de passe</a></p>
+          </div> */}
+          <div>
+            <p>Vous n'êtes pas encore inscrit ? <a href="/register">Inscription</a></p>
+          </div>
         </div>
-        <div>
-          <p>Vous n'êtes pas encore inscrit ? <a href="/register">Inscription</a></p>
-        </div>
+        
       </form>
     </div>
   )

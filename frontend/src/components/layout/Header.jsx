@@ -17,7 +17,9 @@ function Header() {
     
     return (
         <header className="header">
-            <img src="/images/logo.svg" alt="Logo du blog" className="logo" width={50}/>
+            <a href="/">
+                <img src="/images/logo.svg" alt="Logo du blog" className="logo" width={50}/>
+            </a>
             <h1>Le Blog de biologie</h1>
             <nav>
                 <ul>
@@ -26,7 +28,7 @@ function Header() {
                     <li><a href="/register">Inscription</a></li>
                     { userToken ? <li><a href="/my-articles">Mes articles</a></li> : null }
                     { userToken ? <li><a href="/profile">Profil</a></li> : null }
-                    <li><a href="">Déconnexion</a></li>
+                    {/* <li><a href="">Déconnexion</a></li> */}
                 </ul>
             </nav>
         </header>
