@@ -22,6 +22,8 @@ export const Login = () => {
           'Content-Type': 'application/json'
         }
       })
+      const user = data.data; 
+      console.log(user);
       const token = data.token
       // Stockage dans localStorage sous forme de chaîne JSON
       localStorage.setItem('token', token);
@@ -40,16 +42,19 @@ export const Login = () => {
           <h2>Connexion</h2>
           
 
-          <label htmlFor="email"><b>Adresse e-mail</b></label>
-          <br/>
-          <input type="text" name="email" id="email" value={values.email} onChange={(e) => handleChange("email", e.target.value)} required />
-          <br/>
-          <label htmlFor="password"><b>Mot de passe</b></label>
-          <br/>
-          <input type="password" name="password" id="password" value={values.password} onChange={(e) => handleChange("password", e.target.value)} required />
-          <br/>
-
-          <button type="submit">Se connecter</button>
+          <div className='pb-3'>
+            <label htmlFor="email"><b>Adresse e-mail</b></label>
+            <br/>
+            <input type="text" name="email" id="email" value={values.email} onChange={(e) => handleChange("email", e.target.value)} required />
+            <br/>
+          </div>
+          <div className='pb-3'>
+            <label htmlFor="password"><b>Mot de passe</b></label>
+            <br/>
+            <input type="password" name="password" id="password" value={values.password} onChange={(e) => handleChange("password", e.target.value)} required />
+            <br/>
+          </div>
+          <button type="submit" className='mb-3'>Se connecter</button>
 
           {/* <div>
           <p>Mot de passe oublié ? <a href="/register">Modifier le mot de passe</a></p>

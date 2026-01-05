@@ -5,9 +5,7 @@ import './Header.css';
 function Header() {
     const [userToken, setUserToken] = useState();
     // Récupération de l'utilisateur enregistré
-    const storedUserJSON = localStorage.getItem('user');
-    console.log(storedUserJSON);
-    const storedUser = JSON.parse(storedUserJSON);
+    const storedUser = localStorage.getItem('token');
     console.log(storedUser);
     let token;  
 

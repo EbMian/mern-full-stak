@@ -38,19 +38,25 @@ export const Register = () => {
           <h2>Inscription</h2>
           <br />
 
-          <label htmlFor="name"><b>Nom</b></label>
-          <br />
-          <input type="text" name="name" id="name" value={values.nom} onChange={(e) => handleChange("nom", e.target.value)} required />
-          <br />
-          <label htmlFor="email"><b>Adresse e-mail</b></label>
-          <br />
-          <input type="text" name="email" id="email" value={values.email} onChange={(e) => handleChange("email", e.target.value)} required />
-          <br />
-          <label htmlFor="password"><b>Mot de passe</b></label>
-          <br />
-          <input type="password" name="password" id="password" value={values.password} onChange={(e) => handleChange("password", e.target.value)} required />
-          <br />
-          <button type="submit">S'inscrire</button>
+          <div className='pb-3'>
+            <label htmlFor="name"><b>Nom</b></label>
+            <br />
+            <input type="text" name="name" id="name" value={values.nom} onChange={(e) => handleChange("nom", e.target.value)} required />
+            <br />
+          </div>
+          <div className='pb-3'>
+            <label htmlFor="email"><b>Adresse e-mail</b></label>
+            <br />
+            <input type="text" name="email" id="email" value={values.email} onChange={(e) => handleChange("email", e.target.value)} required />
+            <br />
+          </div>
+          <div className='pb-3'>
+            <label htmlFor="password"><b>Mot de passe</b></label>
+            <br />
+            <input type="password" name="password" id="password" value={values.password} onChange={(e) => handleChange("password", e.target.value)} required />
+            <br />
+          </div>
+          <button type="submit" className='mb-3'>S'inscrire</button>
         
           <div>
             <p>Vous avez déjà un compte ? <a href="/login">Connexion</a>.</p>

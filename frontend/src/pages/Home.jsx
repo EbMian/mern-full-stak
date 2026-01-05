@@ -11,11 +11,9 @@ export const Home = () => {
   const storedUser = JSON.parse(storedUserJSON);
   console.log(storedUser);
   let token;  
-  storedUser ? token = storedUser.token : null;
-  console.log(token);
-  const [articles, setArticles] = useState([]);
 
-  let wantToComment = false;
+  const [articles, setArticles] = useState([]);
+  const [wantToComment, setWantToComment] = useState(false);
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -34,8 +32,8 @@ export const Home = () => {
 
   async function displayTextArea(e) {
     // Passe la variable wantToComment à true -> à pour effet d'afficher le textarea et bouton du commentaire
-    wantToComment = true;
     e.preventDefault();
+    setWantToComment(true);
   }
   
   return (
@@ -44,9 +42,9 @@ export const Home = () => {
         <label htmlFor="gsearch">Rechercher un article </label>
         <input type="search" id="gsearch" name="gsearch" />
       </div> */}
-      <h2>Accueil</h2>
-      <p>La connexion est nécessaire pour commenter ou créer un article</p>
-      <div className='container-fluid'>
+      <h2 className='ps-3 py-5'>Accueil</h2>
+      { !storedUser ? <p>La connexion est nécessaire pour commenter ou créer un article</p> : null }
+      <div className='container-fluid pb-5'>
         <div className='row' style={{rowGap: "20px"}}>
           
             {articles.map(article =>
@@ -60,7 +58,7 @@ export const Home = () => {
                       <p>{article.resume}</p>
                       <a href={"/articles/"+article._id} className="btn" style={{backgroundColor: "#FFE100", borderRadius: "15px", color: "black", fontWeight: "bold", border: "none"}}>Voir plus</a>
                       {/* <p>{article.vues}</p> */}
-                      { token ? <button type="button" onClick={displayTextArea}>Commenter</button> : null}
+                      { storedUser ? <button type="button" /*onClick={displayTextArea}*/>Commenter</button> : null}
                       {wantToComment ? <CommentForm/> : null}
                     </div>
 
